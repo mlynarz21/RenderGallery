@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -82,13 +84,31 @@ class RenderAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder>{
         Drawable rightRender;
 
         MyViewHolder viewHolder = (MyViewHolder) holder;
-        viewHolder.leftRender.setImageDrawable(leftRender);
+        Glide.with(context)
+                .load(leftRender)
+                .into(viewHolder.leftRender);
 
         if(renderListRight.size()>position) {
             rightRender = renderListRight.get(position);
-            viewHolder.rightRender.setImageDrawable(rightRender);
+            Glide.with(context)
+                    .load(rightRender)
+                    .into(viewHolder.rightRender);
         }
         else viewHolder.rightRender.setImageDrawable(null);
+
+        viewHolder.rightRender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+        viewHolder.leftRender.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 }
